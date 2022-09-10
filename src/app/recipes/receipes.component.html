@@ -1,9 +1,15 @@
 <div class="row mt-2">
   <div class="col-md-5">
-    <app-recipelist></app-recipelist>
+    <app-recipelist (selectedReceipe) = "showReceipe($event)"></app-recipelist>
   </div>
 
   <div class="col-md-7">
-    <app-recipedetail></app-recipedetail>
+    <app-recipedetail
+    *ngIf = "receipeToShow ; else receipeDetailTemplate"
+    [receipeOnDisplay] = "receipeToShow">
+    </app-recipedetail>
+    <ng-template #receipeDetailTemplate>
+      <p>Please select a receipe to display</p>
+    </ng-template>
   </div>
 </div>
