@@ -7,17 +7,17 @@ import { Ingrident } from 'src/app/common/ingredients.model';
   styleUrls: ['./shoppingedit.component.css']
 })
 export class ShoppingeditComponent implements OnInit {
-  @ViewChild('nameRef',{static:false}) name : ElementRef;
-  @ViewChild('qtyRef',{static : false}) qty : ElementRef;
-  @Output() addIngridient = new EventEmitter<Ingrident>();
-
+ @ViewChild('nameRef') nameRef : ElementRef;
+ @ViewChild('qtyRef') qtyRef : ElementRef;
+ @Output() newIngridient = new EventEmitter<Ingrident>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addNewIngridient(){
-   const newIngridient = new Ingrident(this.name.nativeElement.value,this.qty.nativeElement.value);
-   this.addIngridient.emit(newIngridient);
+  AddNewIngridient(){
+    console.log(this.nameRef.nativeElement.value);
+    const ingrident = new Ingrident(this.nameRef.nativeElement.value,this.qtyRef.nativeElement.value);
+    this.newIngridient.emit(ingrident);
   }
 }
